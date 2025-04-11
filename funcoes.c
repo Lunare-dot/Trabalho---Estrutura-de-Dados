@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 #include <time.h>
 
 #include "funcoes.h"
+
+#define true 1
+#define false 0
+typedef int bool;
 
 char *extrair_campo_csv(char **linha_ptr) {
     char *inicio = *linha_ptr;
@@ -41,7 +44,7 @@ processo *importar_csv(char *Arquivo) {
 
     processo *V = malloc(QUANTIDADE_DE_LINHAS * sizeof(processo));
     char linha[1024];
-    fgets(linha, sizeof(linha), fp); // pula cabeçalho
+    fgets(linha, sizeof(linha), fp);
 
     for (int i = 0; i < QUANTIDADE_DE_LINHAS; i++) {
         if (fgets(linha, sizeof(linha), fp) == NULL) break;
@@ -137,7 +140,7 @@ void quick_sort_data_desc(processo *dados, int inicio, int fim) {
 
 void display_dados(processo *V){
     for (int i = 0; i < QUANTIDADE_DE_LINHAS; i++){
-         printf("%ld,%s,%s,%s,%s,%c\n", V[i].id, V[i].numero, V[i].data_ajuizamento, V[i].id_classe, V[i].id_assunto, V[i].ano_eleicao);
+         printf("%ld,%s,%s,%s,%s,%d\n", V[i].id, V[i].numero, V[i].data_ajuizamento, V[i].id_classe, V[i].id_assunto, V[i].ano_eleicao);
     }
 }
 
